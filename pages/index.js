@@ -1,12 +1,9 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import { getLyricFromSong, getRandomSong } from '../functions'
-import { useState, useEffect } from 'react'
+import Navbar from './components/Navbar/Navbar'
 
 const Home = () => {
   return (
     <div>
-      
+      <Navbar/>
     </div>
   )
 }

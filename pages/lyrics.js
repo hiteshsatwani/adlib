@@ -1,9 +1,13 @@
 import { timers } from 'jquery';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { checkcache, getLRC } from '../functions'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import SpotifyWebApi from 'spotify-web-api-js';
 import firebase from 'firebase'
+import CurrentLine from './components/currentLine'
+import { Context } from './store';
+import Navbar from './components/Navbar/Navbar'
+import MusicCard from './components/card/musiccard'
 
 
 const LyricsApp = () => {
@@ -20,31 +24,23 @@ const LyricsApp = () => {
     }
 
     const [lrc, setLRC] = useState([])
-    const [timer, setTimer] = useState(0)
-    const [currentLine, setcurrentLine] = useState('')
-    const [prevLine, setprevLine] = useState('')
-    const [nextLine, setnextLine] = useState('')
-    const countRef = useRef(null)
 
     const [session, loading] = useSession()
 
     const spotifyApi = new SpotifyWebApi();
 
-
-    var time = 0
+    const [state, setState] = useContext(Context)
 
 
     const [title, settitle] = useState('Nothing Playing')
     const [artist, setartist] = useState('Nothing Playing')
-    const [albumart, setalbumart] = useState("https://i.pinimg.com/736x/ae/dc/45/aedc457b2cdad874b38dc69015e561ee.jpg")
+    const [albumart, setalbumart] = useState("https://i.pinimg.com/originals/b5/bb/ed/b5bbed340753c7e267840e9f67623b1f.jpg")
     const [albumname, setalbumname] = useState('None')
     const [artistid, setartistid] = useState('')
-    const [func, setfunc] = useState(0)
-    const [interval, setinterval] = useState()
-    const [timestamps, settimestamps] = useState([])
+    const [progress, setprogress] = useState(0)
 
 
-    const [timer2, settimer2] = useState(null)
+
 
 
     const getNowPlaying = () => {
@@ -52,6 +48,8 @@ const LyricsApp = () => {
         setInterval(() => {
             spotifyApi.getMyCurrentPlaybackState()
                 .then((response) => {
+                    setState({ progress: response.progress_ms })
+                    console.log(state)
                     if (currentlyPlaying !== response.item.name) {
                         try {
                             settitle(response.item.name)
@@ -79,67 +77,78 @@ const LyricsApp = () => {
 
     const getLyrics = (song, artist) => {
 
-        reset()
-        setfunc((func) => func + 1)
+        // reset()
+        // setfunc((func) => func + 1)
 
         checkcache(song, artist).then((result) => {
             setLRC(result)
-            for (const s of result) {
-                console.log(s)
-                var ind = s.match(/\[(.*?)\]/)[1]
-                console.log(ind)
-                var second = (Number(ind.split(':')[0]) * 60 + Number(ind.split(':')[1])) * 10;
-                timestamps.push(Math.round(second))
-                console.log(Math.round(second))
-            }
-            const id = setInterval(() => {
-                setTimer((timer) => timer + 1)
-                time = time + 1
-                //move to another function?????
-                if (timestamps.includes(time)) {
-                    var line = result[timestamps.indexOf(time)]
-                    line = line.replace(line.match(/\[(.*?)\]/)[0], '')
-                    setcurrentLine(line)
-                }
-            }, 100)
-            settimer2(id)
         }
         )
     }
 
-    const reset = () => {
-        setTimer(0)
-        setcurrentLine('')
-        clearInterval(timer2)
-        settimestamps([])
-        setLRC('')
-    }
+
+
 
     useEffect(() => {
         // getNowPlaying()
         console.log("effect")
-
         getNowPlaying()
     }, []);
 
+    if (lrc.length == 0) {
+        return (
+            <div>
 
-    return (
-        <div>
-            {!session && <>
-                Not signed in <br />
-                <button onClick={() => signIn()}>Sign in</button>
-            </>}
-            {session &&
-                <>
-                    {spotifyApi.setAccessToken(session.accessToken)}
-                    {title}<br />
-                    {currentLine}<br /> {timer} <br /> {timer2} <br /> {func} <br/>
-                    <button onClick={() => signOut()}>Sign Out</button> <br />
-                    <button onClick={() => reset()}>Stop</button>
-                </>
-            }
-        </div>
-    )
+                {!session && <>
+                    Not signed in <br />
+                    <button onClick={() => signIn()}>Sign in</button>
+                </>}
+                {session &&
+                    <>
+                        <div className="bckgrnd min-h-screen" style={{ backgroundImage: "url(" + albumart + ")", }}>
+
+                        </div>
+                        <div className="absolute w-screen">
+                            {/* <Navbar /> */}
+
+                            {spotifyApi.setAccessToken(session.accessToken)}
+                            <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
+
+                        </div>
+
+                    </>
+                }
+            </div >
+        )
+    } else {
+        return (
+            <div>
+                {!session && <>
+                    Not signed in <br />
+                    <button onClick={() => signIn()}>Sign in</button>
+                </>}
+                {session &&
+                    <>
+                        <div className="bckgrnd min-h-screen" style={{ backgroundImage: "url(" + albumart + ")", }}>
+
+                        </div>
+                        <div className="absolute w-screen h-screen">
+                            {/* <Navbar /> */}
+
+                            {spotifyApi.setAccessToken(session.accessToken)}
+                            <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
+                            <CurrentLine key={lrc} lyrics={lrc}/>
+                        </div>
+
+                    </>
+                }
+            </div>
+        )
+
+
+    }
+
+
 
 
 

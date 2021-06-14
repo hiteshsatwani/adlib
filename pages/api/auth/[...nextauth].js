@@ -7,7 +7,7 @@ export default NextAuth({
     Providers.Spotify({
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      scope: 'user-read-private user-read-email user-read-playback-state user-top-read user-modify-playback-state playlist-read-private'
+      scope: 'user-read-private user-read-email user-read-playback-state user-top-read user-modify-playback-state playlist-read-private playlist-modify-public playlist-modify-private'
     }),
 
   ],

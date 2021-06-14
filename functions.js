@@ -6,22 +6,23 @@ import "firebase/firestore";
 export async function checkcache(song, artist) {
 	const db = firebase.firestore()
 
+	song = song.replace(/ *\([^)]*\) */g, ""); 
+
 	var docRef = db.collection("CachedLyrics").doc(song + " + " + artist);
 	return docRef.get().then((doc) => {
 		if (doc.exists) {
-			var data = JSON.parse(doc.data().lyrics)
-			data = data.splice(1)
+			var data = doc.data().lyrics.split('\n')
 			return data
 		} else {
 			console.log("ok1")
-			const data = fetch('http://localhost:5001/lyrics-api-b7dfc/us-central1/getlrc?artist=' + artist + "&song=" + song).then(function (response) {
+			const data = fetch('https://us-central1-lyrics-api-b7dfc.cloudfunctions.net/pygetLyrics?artist=' + artist + "&track=" + song).then(function (response) {
 				return response.text();
 			}).then(function (string) {
 				if (string != "None") {
 					docRef.set({ lyrics: string })
 				}
-				var data = JSON.parse(string)
-				data = data.splice(1)
+				var data = string.split('\n')
+				console.log(data)
 				return data
 			})
 			return data
