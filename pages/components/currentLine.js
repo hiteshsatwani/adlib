@@ -15,6 +15,8 @@ const CurrentLine = ({ lyrics }) => {
 	var currentlyrics = []
 
 
+
+
 	var currentms = 0
 
 	useEffect(() => {
@@ -26,11 +28,12 @@ const CurrentLine = ({ lyrics }) => {
 			if (currentms < state.progress) {
 				currentms = state.progress + 1
 				var newtime = state.progress + 1500
-				console.log(newtime + " " + state.progress)
 				setTimer(Math.round(newtime / 100))
 				time = (Math.round(newtime / 100))
 			}
 		}, 1000);
+
+		console.log("refreshed")
 
 	}, []);
 
@@ -56,7 +59,7 @@ const CurrentLine = ({ lyrics }) => {
 				line = line.replace(line.match(/\[(.*?)\]/)[0], '')
 				setcurrentLine(line)
 				var linebefore = lyrics[lyrics.indexOf(lyrics[timestamps.indexOf(time)]) - 1]
-				
+
 
 				linebefore = linebefore.replace(linebefore.match(/\[(.*?)\]/)[0], '')
 				var lineafter = lyrics[lyrics.indexOf(lyrics[timestamps.indexOf(time)]) + 1]
@@ -69,18 +72,19 @@ const CurrentLine = ({ lyrics }) => {
 
 	}
 	return (
-		<div className="pt-28">
-			<div className="text-white text-center text-4xl m-auto text-opacity-25">
-				{linebefore}<br/><br/><br/>
+		<div className="flex h-3/4">
+			<div className="m-auto pl-5 pr-5 md:pl-0 md:pr-0">
+				<div className="text-white text-center text-4xl text-opacity-25">
+					{linebefore}<br /><br /><br />
+				</div>
+				<div className="text-white text-center text-4xl">
+					{currentLine}<br /><br /><br />
+				</div>
+				<div className="text-white text-center text-4xl text-opacity-25">
+					{lineafter}
+				</div>
+				<br />
 			</div>
-			<div className="text-white text-center text-4xl m-auto ">
-				{currentLine}<br/><br/><br/>
-			</div>
-			<div className="text-white text-center text-4xl m-auto text-opacity-25">
-				{lineafter}
-			</div>
-
-			<br />
 		</div>
 	)
 }

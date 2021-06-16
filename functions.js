@@ -14,7 +14,6 @@ export async function checkcache(song, artist) {
 			var data = doc.data().lyrics.split('\n')
 			return data
 		} else {
-			console.log("ok1")
 			const data = fetch('https://us-central1-lyrics-api-b7dfc.cloudfunctions.net/pygetLyrics?artist=' + artist + "&track=" + song).then(function (response) {
 				return response.text();
 			}).then(function (string) {
@@ -22,7 +21,6 @@ export async function checkcache(song, artist) {
 					docRef.set({ lyrics: string })
 				}
 				var data = string.split('\n')
-				console.log(data)
 				return data
 			})
 			return data
@@ -54,16 +52,11 @@ export async function getRandomSong(artist) {
 	}).then(function (string) {
 
 		var jsondata = JSON.parse(string)
-		console.log(jsondata.correctoption)
 		return jsondata
 	});
-
-
 	return data
 
 }
-
-
 
 export function getRandomInt(max) {
 	return Math.floor(Math.random() * max);

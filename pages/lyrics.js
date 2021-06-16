@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar'
 import MusicCard from './components/card/musiccard'
 
 
+
 const LyricsApp = () => {
 
     if (!firebase.apps.length) {
@@ -36,10 +37,6 @@ const LyricsApp = () => {
     const [artist, setartist] = useState('Nothing Playing')
     const [albumart, setalbumart] = useState("https://i.pinimg.com/originals/b5/bb/ed/b5bbed340753c7e267840e9f67623b1f.jpg")
     const [albumname, setalbumname] = useState('None')
-    const [artistid, setartistid] = useState('')
-    const [progress, setprogress] = useState(0)
-
-
 
 
 
@@ -49,7 +46,6 @@ const LyricsApp = () => {
             spotifyApi.getMyCurrentPlaybackState()
                 .then((response) => {
                     setState({ progress: response.progress_ms })
-                    console.log(state)
                     if (currentlyPlaying !== response.item.name) {
                         try {
                             settitle(response.item.name)
@@ -66,8 +62,6 @@ const LyricsApp = () => {
                             setalbumart("https://i.pinimg.com/736x/ae/dc/45/aedc457b2cdad874b38dc69015e561ee.jpg")
                             setalbumname(response.item.album.name)
                         }
-                    } else {
-                        console.log("Same")
                     }
                 })
 
@@ -90,8 +84,6 @@ const LyricsApp = () => {
 
 
     useEffect(() => {
-        // getNowPlaying()
-        console.log("effect")
         getNowPlaying()
     }, []);
 
@@ -137,7 +129,8 @@ const LyricsApp = () => {
 
                             {spotifyApi.setAccessToken(session.accessToken)}
                             <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
-                            <CurrentLine key={lrc} lyrics={lrc}/>
+                            <CurrentLine key={lrc} lyrics={lrc} />
+                       
                         </div>
 
                     </>
