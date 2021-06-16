@@ -52,11 +52,11 @@ const LyricsApp = () => {
                             setartist(response.item.artists[0].name)
                             setalbumart(response.item.album.images[0].url)
                             setalbumname(response.item.album.name)
-                            setartistid(response.item.artists[0].id)
                             getLyrics(response.item.name, response.item.artists[0].name)
                             currentlyPlaying = response.item.name
 
                         } catch (err) {
+                            console.log(err)
                             settitle(response.item.name)
                             setartist(response.item.artists[0].name)
                             setalbumart("https://i.pinimg.com/736x/ae/dc/45/aedc457b2cdad874b38dc69015e561ee.jpg")

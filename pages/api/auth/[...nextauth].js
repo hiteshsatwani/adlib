@@ -76,7 +76,6 @@ export default NextAuth({
         token.accessToken = account.accessToken
         token.accessTokenExpires = account.expires
         token.refreshToken = account.refreshToken
-        console.log(token)
       }
 
       // Return previous token if the access token has not expired yet
@@ -88,7 +87,6 @@ export default NextAuth({
       return refreshAccessToken(token);
     },
     async session(session, token) {
-      console.log(token)
       session.accessToken = token.accessToken
       session.refreshToken = token.refreshToken
       return session
