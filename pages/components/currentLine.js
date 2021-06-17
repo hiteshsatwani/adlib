@@ -60,12 +60,16 @@ const CurrentLine = ({ lyrics }) => {
 				setcurrentLine(line)
 				var linebefore = lyrics[lyrics.indexOf(lyrics[timestamps.indexOf(time)]) - 1]
 
-
-				linebefore = linebefore.replace(linebefore.match(/\[(.*?)\]/)[0], '')
-				var lineafter = lyrics[lyrics.indexOf(lyrics[timestamps.indexOf(time)]) + 1]
-				lineafter = lineafter.replace(lineafter.match(/\[(.*?)\]/)[0], '')
-				setlineafter(lineafter)
-				setlinebefore(linebefore)
+				try {
+					linebefore = linebefore.replace(linebefore.match(/\[(.*?)\]/)[0], '')
+					var lineafter = lyrics[lyrics.indexOf(lyrics[timestamps.indexOf(time)]) + 1]
+					lineafter = lineafter.replace(lineafter.match(/\[(.*?)\]/)[0], '')
+					setlineafter(lineafter)
+					setlinebefore(linebefore)
+				} catch(err){
+					console.log(err)
+				}
+				
 			}
 		}, 100)
 		setIntv1(id)

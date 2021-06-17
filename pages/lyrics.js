@@ -8,6 +8,8 @@ import CurrentLine from './components/currentLine'
 import { Context } from './store';
 import Navbar from './components/Navbar/Navbar'
 import MusicCard from './components/card/musiccard'
+import { useRouter } from 'next/router'
+
 
 
 
@@ -33,10 +35,12 @@ const LyricsApp = () => {
     const [state, setState] = useContext(Context)
 
 
+
     const [title, settitle] = useState('Nothing Playing')
     const [artist, setartist] = useState('Nothing Playing')
     const [albumart, setalbumart] = useState("https://i.pinimg.com/originals/b5/bb/ed/b5bbed340753c7e267840e9f67623b1f.jpg")
     const [albumname, setalbumname] = useState('None')
+    const [forceupdate, setforceupdate] = useState(0)
 
 
 
@@ -76,6 +80,7 @@ const LyricsApp = () => {
 
         checkcache(song, artist).then((result) => {
             setLRC(result)
+            setforceupdate((forceupdate) => forceupdate + 1)
         }
         )
     }
@@ -87,15 +92,21 @@ const LyricsApp = () => {
         getNowPlaying()
     }, []);
 
-    if (lrc.length == 0) {
-        return (
-            <div>
+    const forceupdatef = () => {
+        spotifyApi.getMyCurrentPlaybackState()
+            .then((response) => {
+                setState({ progress: response.progress_ms })
+                setforceupdate((forceupdate) => forceupdate + 1)
+            })
+    }
+    if (session) {
+        if (lrc.length == 0) {
 
-                {!session && <>
-                    Not signed in <br />
-                    <button onClick={() => signIn()}>Sign in</button>
-                </>}
-                {session &&
+
+
+            return (
+                <div>
+
                     <>
                         <div className="bckgrnd min-h-screen" style={{ backgroundImage: "url(" + albumart + ")", }}>
 
@@ -109,17 +120,13 @@ const LyricsApp = () => {
                         </div>
 
                     </>
-                }
-            </div >
-        )
-    } else {
-        return (
-            <div>
-                {!session && <>
-                    Not signed in <br />
-                    <button onClick={() => signIn()}>Sign in</button>
-                </>}
-                {session &&
+
+                </div >
+            )
+        } else {
+            return (
+                <div>
+
                     <>
                         <div className="bckgrnd min-h-screen" style={{ backgroundImage: "url(" + albumart + ")", }}>
 
@@ -129,22 +136,37 @@ const LyricsApp = () => {
 
                             {spotifyApi.setAccessToken(session.accessToken)}
                             <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
-                            <CurrentLine key={lrc} lyrics={lrc} />
-                       
+                            <CurrentLine key={forceupdate} lyrics={lrc} />
+                            <div class="inline-block ml-5 mt-2">
+                                <button onClick={() => forceupdatef()} type="button" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Re-Sync</button>
+                            </div>
                         </div>
 
                     </>
-                }
-            </div>
+
+                </div>
+            )
+
+
+        }
+    } else {
+        return (
+            <>
+                <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-screen h-auto m-h-auto" >
+                    <Navbar />
+                    <div className="m-auto">
+                        <div className="text-white text-center text-4xl pt-20">
+                            Please Sign In
+                        </div>
+                    </div>
+                </div>
+            </>
         )
-
-
     }
 
-
-
-
-
 }
+
+
+
 
 export default LyricsApp
