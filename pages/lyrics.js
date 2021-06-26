@@ -38,7 +38,7 @@ const LyricsApp = () => {
 
     const [title, settitle] = useState('Nothing Playing')
     const [artist, setartist] = useState('Nothing Playing')
-    const [albumart, setalbumart] = useState("https://i.pinimg.com/originals/b5/bb/ed/b5bbed340753c7e267840e9f67623b1f.jpg")
+    const [albumart, setalbumart] = useState("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/1024px-Solid_black.svg.png")
     const [albumname, setalbumname] = useState('None')
     const [forceupdate, setforceupdate] = useState(0)
 
@@ -63,7 +63,7 @@ const LyricsApp = () => {
                             console.log(err)
                             settitle(response.item.name)
                             setartist(response.item.artists[0].name)
-                            setalbumart("https://i.pinimg.com/736x/ae/dc/45/aedc457b2cdad874b38dc69015e561ee.jpg")
+                            setalbumart("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/1024px-Solid_black.svg.png")
                             setalbumname(response.item.album.name)
                         }
                     }
