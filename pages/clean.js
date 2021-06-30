@@ -131,7 +131,7 @@ const Clean = () => {
                 <div>
                     <>
                         {spotifyApi.setAccessToken(session.accessToken)}
-                        <div className="bg-gray-900 min-h-screen h-auto m-h-auto">
+                        <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-screen h-auto m-h-auto">
                             <motion.div initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
@@ -148,7 +148,7 @@ const Clean = () => {
                                             return (
                                                 <div key={playlistname[key]} class="">
 
-                                                    <div className="bg-gray-700 rounded-md">
+                                                    <div className="bg-blue-900 rounded-md">
                                                         <img src={albumarts[key]} className="m-auto pt-10" width="150px" height="150px">
                                                         </img>
 

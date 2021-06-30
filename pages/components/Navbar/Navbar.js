@@ -6,33 +6,19 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 
 const NavBar = () => {
     const [open, setOpen] = React.useState(false);
-
-    const [active, setActive] = React.useState(false);
     const [session, loading] = useSession()
-    const router = useRouter()
-
-
-    const handleClick = () => {
-        setActive(!active);
-    };
-
-    const dashboard = () => {
-        router.push('/register')
-    }
-
-
 
     return (
         <>
             {/* This example requires Tailwind CSS v2.0+ */}
             <div className="relative bg-black">
-                <div className="max-w-auto mx-auto px-4 sm:px-6">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
-                        <div className="flex justify-start lg:w-0 lg:flex-1 ">
+                        <div className="flex justify-start lg:w-0 lg:flex-1">
                             <a href="#">
                                 <span className="sr-only">Workflow</span>
                                 <img
-                                    className="h-16 w-auto sm:h-16"
+                                    className="h-12 w-auto sm:h-14"
                                     src="https://svgshare.com/i/Y0T.svg"
                                     alt=""
                                 />
@@ -41,7 +27,7 @@ const NavBar = () => {
                         <div className="-mr-2 -my-2 md:hidden">
                             <button
                                 type="button"
-                                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-white hover:text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                 onClick={() => setOpen(!open)}
                             >
                                 <span className="sr-only">Open menu</span>
@@ -64,80 +50,66 @@ const NavBar = () => {
                             </button>
                         </div>
                         <nav className="hidden md:flex space-x-10">
-                            <div className="relative">
-                                {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
-                                <a
-                                    href='#'
-                                    className="text-base font-medium text-white hover:text-indigo-500"
-                                >
-                                    <Link href='/'>
-                                        <span >Home</span>
-                                    </Link>
+                            <Link
+                                href="/"
 
-                                </a>
-                            </div>
-                            {/*
-              'Solutions' flyout menu, show/hide based on flyout menu state.
-  
-              Entering: "transition ease-out duration-200"
-                From: "opacity-0 translate-y-1"
-                To: "opacity-100 translate-y-0"
-              Leaving: "transition ease-in duration-150"
-                From: "opacity-100 translate-y-0"
-                To: "opacity-0 translate-y-1"
-            */}
+                            >
+                                <span className="text-base font-medium text-white hover:text-gray-900">
+                                    Home
+                                </span>
 
-                            <div className="relative">
-                                <a
-                                    href='#'
-                                    className="text-base font-medium text-white hover:text-indigo-500"
-                                >
-                                    <Link href='/lyrics'>
+                            </Link>
+                            <Link
+                                href="/lyrics"
 
-                                        Lyrics App
+                            >
+                                <span className="text-base font-medium text-white hover:text-gray-900">
+                                    Lyrics
+                                </span>
 
-                                </Link>
-                                </a>
-                            </div>
+                            </Link>
+                            <Link
+                                href="/clean"
 
-                            <div className="relative">
+                            >
+                                <span className="text-base font-medium text-white hover:text-gray-900">
+                                    Clean My Playlist
+                                </span>
 
-                                <a
-                                    href='#'
-                                    className="text-base font-medium text-white hover:text-indigo-500"
-                                >
-                                    <Link href='/clean'>
+                            </Link>
+                            <Link
+                                href="/game"
 
-                                        Clean My Playlist
+                            >
+                                <span className="text-base font-medium text-white hover:text-gray-900">
+                                    Lyrics Game
+                                </span>
 
-                                </Link>
-                                </a>
-                            </div>
-
-
+                            </Link>
                         </nav>
+                        {!session &&
+                            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0" onClick={() => signIn()}>
 
-                        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-
-                            {!session ? (
                                 <a
-                                    onClick={() => signIn()}
-                                    href='#'
+                                    href="#"
                                     className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                                 >
                                     Sign In
                                 </a>
+                            </div>
+                        }
+                        {session &&
+                            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0" onClick={() => signOut()}>
 
-                            ) : null}
-
-                            {session ? (
                                 <a
-                                    onClick={() =>  signOut()}
+                                    href="#"
                                     className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                                 >
                                     Sign Out
-                                </a>) : null}
-                        </div>
+                                </a>
+                            </div>
+                        }
+
                     </div>
                 </div>
                 {/*
@@ -158,12 +130,12 @@ const NavBar = () => {
                             : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
                     }
                 >
-                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-black relative">
+                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-black divide-y-2 divide-gray-50">
                         <div className="pt-5 pb-6 px-5">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <img
-                                        className="h-16 w-auto"
+                                        className="h-12 w-auto"
                                         src="https://svgshare.com/i/Y0T.svg"
                                         alt="Workflow"
                                     />
@@ -171,7 +143,7 @@ const NavBar = () => {
                                 <div className="-mr-2">
                                     <button
                                         type="button"
-                                        className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                        className="bg-white rounded-md p-2 inline-flex items-center justify-center text-white hover:text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                         onClick={() => setOpen(!open)}
                                     >
                                         <span className="sr-only">Close menu</span>
@@ -197,65 +169,72 @@ const NavBar = () => {
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
                                     <a
-                                        className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-90"
+                                        href="#"
+                                        className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                     >
-                                        {/* Heroicon name: outline/chart-bar */}
-                                        <Link href='/'>
-                                            <span className="ml-3 text-base font-medium text-white">
+
+                                        <span className="ml-3 text-base font-medium text-white pt-5">
+                                            <Link href="/">
                                                 Home
-                                            </span>
-                                        </Link>
+                                            </Link>
+                                        </span>
                                     </a>
                                     <a
                                         href="#"
                                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                     >
-                                        <Link href='/lyrics'>
-                                            {/* Heroicon name: outline/chart-bar */}
-                                            <span className="ml-3 text-base font-medium text-white">
-                                                Lyrics App
-                      </span>
-                                        </Link>
+
+                                        <span className="ml-3 text-base font-medium text-white">
+                                            <Link href="/lyrics">
+                                                Lyrics
+                                            </Link>
+                                        </span>
                                     </a>
                                     <a
                                         href="#"
                                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                     >
-                                        <Link href='/clean'>
-                                            {/* Heroicon name: outline/cursor-click */}
-                                            <span className="ml-3 text-base font-medium text-white">
+                                        <span className="ml-3 text-base font-medium text-white">
+                                            <Link href="/clean">
+
                                                 Clean My Playlist
-                      </span>
-                                        </Link>
+                                            </Link>
+                                        </span>
                                     </a>
+                                    <a
+                                        href="#"
+                                        className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                                    >
+                                        <span className="ml-3 text-base font-medium text-white">
+                                            <Link href="/game">
+                                                Lyrics Game
+                                            </Link>
+                                        </span>
+                                    </a>
+                                    <div>
+                                        {!session &&
+                                            <a
+                                                href="#"
+                                                onClick={() => signIn()}
+                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                            >
+                                                Sign In
+                                            </a>
+                                        }
+                                        {session &&
+                                            <a
+                                                href="#"
+                                                onClick={() => signOut()}
+                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                            >
+                                                Sign Out
+                                            </a>
+                                        }
+
+                                    </div>
                                 </nav>
                             </div>
                         </div>
-                        {!session ? (
-                            <div className="py-6 px-5">
-                                <div>
-
-                                    <a
-                                        onClick={() => signIn()}
-                                        className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                                    >
-                                        Sign in 
-                  </a>
-                                </div>
-                            </div>
-                        ) : null}
-                        {session ? (
-                            <div className="py-6 px-5">
-                                <div>
-                                    <a
-                                        onClick={() =>  signOut()}
-                                        className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                                    >
-                                        Sign Out
-                  </a>
-                                </div>
-                            </div>
-                        ) : null}
                     </div>
                 </div>
             </div>
