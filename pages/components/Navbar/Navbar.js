@@ -77,15 +77,7 @@ const NavBar = () => {
                                 </span>
 
                             </Link>
-                            <Link
-                                href="/game"
-
-                            >
-                                <span className="text-base font-medium text-white hover:text-gray-900">
-                                    Lyrics Game
-                                </span>
-
-                            </Link>
+                            
                         </nav>
                         {!session &&
                             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0" onClick={() => signIn()}>
@@ -201,16 +193,7 @@ const NavBar = () => {
                                             </Link>
                                         </span>
                                     </a>
-                                    <a
-                                        href="#"
-                                        className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
-                                    >
-                                        <span className="ml-3 text-base font-medium text-white">
-                                            <Link href="/game">
-                                                Lyrics Game
-                                            </Link>
-                                        </span>
-                                    </a>
+                                    
                                     <div>
                                         {!session &&
                                             <a

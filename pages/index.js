@@ -20,17 +20,22 @@ const Home = () => {
     //     </div>
     //   </div>
     // </div>
-    <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-screen h-auto m-h-auto" >
-      <Navbar />
+    <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 h-screen-75 m-h-auto flex" >
       <motion.div initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ delay: 1.5 }} className="m-auto">
-        <div className="text-white text-center text-4xl pt-20">
-        Welcome To The Beta
+        transition={{ delay: 1.5 }} className="m-auto pl-10 pr-10">
+        <div className="text-white text-center text-4xl">
+          Welcome To The Beta
         </div>
         <div className="text-white text-center text-1xl pt-5">
-        dm me on ig to fix any bugs u find @hitexhs
+          I recommend installing it for the best experience 
+        </div>
+        <div className="text-white text-center text-1xl pt-1">
+          Login with the last button in the dock for mobile
+        </div>
+        <div className="text-white text-center text-1xl pt-1">
+          dm me on ig to fix any bugs u find @hitexhs
         </div>
       </motion.div>
     </div>

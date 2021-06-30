@@ -1,6 +1,5 @@
 import SpotifyWebApi from 'spotify-web-api-js';
 import { signIn, signOut, useSession } from 'next-auth/client'
-import Navbar from './components/Navbar/Navbar'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
@@ -19,9 +18,9 @@ const Clean = () => {
 
     useEffect(() => {
         if (session?.error) {
-          signIn(); // Force sign in to hopefully resolve error
+            signIn(); // Force sign in to hopefully resolve error
         }
-      }, [session]);
+    }, [session]);
 
     const getPlaylists = () => {
         console.log(true)
@@ -127,11 +126,10 @@ const Clean = () => {
 
         return (
             <div>
-                <Navbar />
                 <div>
                     <>
                         {spotifyApi.setAccessToken(session.accessToken)}
-                        <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-screen h-auto m-h-auto">
+                        <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 m-h-auto">
                             <motion.div initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
@@ -185,10 +183,15 @@ const Clean = () => {
         )
     } else {
         return (
+            <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 m-h-auto">
 
-            <div>
-                <Navbar />
+                <div className="m-auto">
+                    <div className="text-white text-center text-4xl pt-20">
+                        Please Sign In
+                    </div>
+                </div>
             </div>
+
         )
     }
 

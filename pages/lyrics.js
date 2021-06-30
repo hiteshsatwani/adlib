@@ -8,8 +8,8 @@ import CurrentLine from './components/currentLine'
 import { Context } from './store';
 import Navbar from './components/Navbar/Navbar'
 import MusicCard from './components/card/musiccard'
-import { useRouter } from 'next/router'
-
+import router, { useRouter } from 'next/router'
+import Dock from './components/Navbar/DockBar'
 
 
 
@@ -34,6 +34,7 @@ const LyricsApp = () => {
 
     const [state, setState] = useContext(Context)
 
+    const router = useRouter()
 
 
     const [title, settitle] = useState('Nothing Playing')
@@ -116,7 +117,11 @@ const LyricsApp = () => {
 
                             {spotifyApi.setAccessToken(session.accessToken)}
                             <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
-
+                            <div class="block ml-5 mt-2 pt-96">
+                                <div class="float-right mr-5">
+                                    <button onClick={() => router.push('/')} type="button" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Home</button>
+                                </div>
+                            </div>
                         </div>
 
                     </>
@@ -137,9 +142,13 @@ const LyricsApp = () => {
                             {spotifyApi.setAccessToken(session.accessToken)}
                             <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
                             <CurrentLine key={forceupdate} lyrics={lrc} />
-                            <div class="inline-block ml-5 mt-2">
+                            <div class="block ml-5 mt-2">
                                 <button onClick={() => forceupdatef()} type="button" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Re-Sync</button>
+                                <div class="float-right mr-5">
+                                    <button onClick={() => router.push('/')} type="button" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Home</button>
+                                </div>
                             </div>
+
                         </div>
 
                     </>
@@ -152,13 +161,21 @@ const LyricsApp = () => {
     } else {
         return (
             <>
-                <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-screen h-auto m-h-auto" >
-                    <Navbar />
+                <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 m-h-auto">
+
                     <div className="m-auto">
+                        <div className="hidden md:block">
+                            <Navbar />
+                        </div>
                         <div className="text-white text-center text-4xl pt-20">
                             Please Sign In
                         </div>
+
                     </div>
+
+                </div>
+                <div className="block md:hidden">
+                    <Dock />
                 </div>
             </>
         )
