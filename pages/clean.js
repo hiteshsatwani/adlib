@@ -2,7 +2,8 @@ import SpotifyWebApi from 'spotify-web-api-js';
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-
+import Navbar from './components/Navbar/Navbar';
+import Dock from './components/Navbar/DockBar';
 
 const Clean = () => {
 
@@ -126,7 +127,11 @@ const Clean = () => {
 
         return (
             <div>
+                <div className="hidden md:block">
+                    <Navbar />
+                </div>
                 <div>
+
                     <>
                         {spotifyApi.setAccessToken(session.accessToken)}
                         <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 m-h-auto">
@@ -178,19 +183,30 @@ const Clean = () => {
                         </div>
                     </>
                 </div>
+                <div className="block md:hidden">
+                    <Dock />
+                </div>
             </div>
 
         )
     } else {
         return (
-            <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 m-h-auto">
-
-                <div className="m-auto">
-                    <div className="text-white text-center text-4xl pt-20">
-                        Please Sign In
+            <div>
+                <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 md:h-screen m-h-auto">
+                    <div className="hidden md:block">
+                        <Navbar />
+                    </div>
+                    <div className="m-auto">
+                        <div className="text-white text-center text-4xl pt-20">
+                            Please Sign In
+                        </div>
                     </div>
                 </div>
+                <div className="block md:hidden">
+                    <Dock />
+                </div>
             </div>
+
 
         )
     }
