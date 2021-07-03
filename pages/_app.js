@@ -8,11 +8,24 @@ import Navbar from './components/Navbar/Navbar'
 import Dock from './components/Navbar/DockBar'
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import * as gtag from '../lib/gtag'
+
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 
 function MyApp({ Component, pageProps }) {
-
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <Store>
