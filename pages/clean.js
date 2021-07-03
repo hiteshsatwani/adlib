@@ -134,7 +134,7 @@ const Clean = () => {
 
                     <>
                         {spotifyApi.setAccessToken(session.accessToken)}
-                        <div className="bg-purple-200 h-screen-75">
+                        <div className="bg-purple-200 h-screen-75 md:min-h-screen md:h-auto">
                             <motion.div initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
@@ -146,7 +146,7 @@ const Clean = () => {
                                     Only playlists upto 200 tracks are currently supported!
                                 </div>
                                 <div className="md:p-20 p-5 pt-15 ">
-                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3 h-screen-35 overflow-auto">
+                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3 h-screen-35 md:h-auto overflow-auto">
                                         {Object.keys(playlistname).map(key => {
                                             return (
                                                 <div key={playlistname[key]} class="">
@@ -192,7 +192,11 @@ const Clean = () => {
     } else {
         return (
             <>
+                <div className="hidden md:block">
+                    <Navbar />
+                </div>
                 <div className="bg-purple-200 min-h-75 h-auto flex" >
+
                     <div className="m-auto">
                         <div className="w-card h-auto pb-5 bg-purple-300 rounded-lg pl-20 pr-20" onClick={() => signIn("spotify")}>
                             <div className="text-indigo-900 text-md pt-5 font-m-heavy text-center">

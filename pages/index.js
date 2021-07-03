@@ -129,7 +129,7 @@ const Home = () => {
       <div className="hidden md:block">
         <Navbar />
       </div>
-      <div className="bg-purple-200 min-h-75 h-auto" >
+      <div className="bg-purple-200 min-h-75 h-auto flex" >
         <div className="pl-6 pr-6 block md:hidden">
           {session &&
             <div className="pt-10">
@@ -154,6 +154,17 @@ const Home = () => {
               {songcard()}
             </div>
           }
+        </div>
+        <div className="m-auto pb-32">
+          <div className="text-indigo-900 text-5xl pt-5 font-m-heavy text-center ">
+            Welcome to AdLib
+          </div>
+          <div className="text-indigo-900 text-1xl pt-5 font-m-heavy text-center pb-10">
+            (It is recommended to install the mobile app for the best experience)
+          </div>
+          <div>
+            {signInCard()}
+          </div>
         </div>
 
 
