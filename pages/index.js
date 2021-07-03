@@ -155,7 +155,7 @@ const Home = () => {
             </div>
           }
         </div>
-        <div className="m-auto pb-32">
+        <div className="md:block hidden m-auto pb-32">
           <div className="text-indigo-900 text-5xl pt-5 font-m-heavy text-center ">
             Welcome to AdLib
           </div>
