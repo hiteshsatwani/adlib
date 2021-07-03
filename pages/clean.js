@@ -146,7 +146,7 @@ const Clean = () => {
                                     Only playlists upto 200 tracks are currently supported!
                                 </div>
                                 <div className="md:p-20 p-5 pt-15 ">
-                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3 h-screen-35 md:h-auto overflow-auto">
+                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3 md:h-auto overflow-auto">
                                         {Object.keys(playlistname).map(key => {
                                             return (
                                                 <div key={playlistname[key]} class="">

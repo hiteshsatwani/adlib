@@ -1,11 +1,11 @@
 {
-    "theme_color": "#a035f6",
-    "background_color": "#4a90e2",
+    "theme_color": "#9F7AEA",
+    "background_color": "#E9D8FD",
     "display": "fullscreen",
     "scope": "/",
     "start_url": "/",
     "name": "AdLib - Lyrics Made Easier",
-    "short_name": " AdLib",
+    "short_name": "AdLib",
     "icons": [
         {
             "src": "/icon-192x192.png",

@@ -57,10 +57,18 @@ const Home = () => {
 
   const profilecard = () => {
 
+    const [pfp, setpfp] = useState("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/1024px-Solid_black.svg.png")
+
+    useEffect(() => {
+      if (!session.user.image == "") {
+        setpfp(session.user.image)
+      }
+    }, []);
+
     return (
       <div className="w-card h-auto flex pb-4 " >
         <div>
-          <img src={session.user.image} className="rounded-full h-20 w-20" />
+          <img src={pfp} className="rounded-full h-20 w-20" />
         </div>
         <div className="text-indigo-900 text-2xl pt-5 pl-4 font-m-heavy flex-1">
           Welcome, {session.user.name}
