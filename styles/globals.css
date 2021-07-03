@@ -7,11 +7,28 @@
   .h-screen-75 {
     height: 93vh
   }
+  .h-screen-35 {
+    height: 70vh
+  }
   .min-h-75 {
     min-height: 93vh
   }
   .h-screen-25 {
     height: 7vh
+  }
+
+  .w-card{
+    width: 100%
+  }
+
+  .h-card{
+    height: 15vh
+  }
+  .font-m-heavy{
+    font-weight: 600
+  }
+  .h-card-song{
+    height: 25vh
   }
 }
 
@@ -20,6 +37,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: Montserrat;
+  
 }
 
 a {

@@ -19,7 +19,7 @@ const Clean = () => {
 
     useEffect(() => {
         if (session?.error) {
-            signIn(); // Force sign in to hopefully resolve error
+            signIn("spotify"); // Force sign in to hopefully resolve error
         }
     }, [session]);
 
@@ -134,24 +134,24 @@ const Clean = () => {
 
                     <>
                         {spotifyApi.setAccessToken(session.accessToken)}
-                        <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 m-h-auto">
+                        <div className="bg-purple-200 h-screen-75">
                             <motion.div initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ delay: 1.5 }} className="m-auto">
-                                <div className="text-white text-center text-4xl pt-20">
+                                <div className="text-indigo-900 text-3xl font-m-heavy text-center pt-8">
                                     Select A Playlist
                                 </div>
-                                <div className="text-white text-center text-1xl pt-5">
+                                <div className="text-indigo-900 text-center text-xl pt-5">
                                     Only playlists upto 200 tracks are currently supported!
                                 </div>
-                                <div className="md:p-20 p-5 pt-20">
-                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3">
+                                <div className="md:p-20 p-5 pt-15 ">
+                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3 h-screen-35 overflow-auto">
                                         {Object.keys(playlistname).map(key => {
                                             return (
                                                 <div key={playlistname[key]} class="">
 
-                                                    <div className="bg-blue-900 rounded-md">
+                                                    <div className="bg-purple-400 rounded-md">
                                                         <img src={albumarts[key]} className="m-auto pt-10" width="150px" height="150px">
                                                         </img>
 
@@ -172,7 +172,7 @@ const Clean = () => {
                                         <a
                                             onClick={() => getPlaylists()}
                                             href='#'
-                                            className="m-auto whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                            className="m-auto whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-indigo-900 bg-purple-300 hover:bg-purple-400"
                                         >
                                             Load Playlists
                                         </a>
@@ -191,21 +191,21 @@ const Clean = () => {
         )
     } else {
         return (
-            <div>
-                <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 md:h-screen m-h-auto">
-                    <div className="hidden md:block">
-                        <Navbar />
-                    </div>
+            <>
+                <div className="bg-purple-200 min-h-75 h-auto flex" >
                     <div className="m-auto">
-                        <div className="text-white text-center text-4xl pt-20">
-                            Please Sign In
+                        <div className="w-card h-auto pb-5 bg-purple-300 rounded-lg pl-20 pr-20" onClick={() => signIn("spotify")}>
+                            <div className="text-indigo-900 text-md pt-5 font-m-heavy text-center">
+                                Sign In
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div className="block md:hidden">
                     <Dock />
                 </div>
-            </div>
+            </>
 
 
         )

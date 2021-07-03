@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
-import { faHome, faHandSparkles, faMusic, faUser, faUserSlash } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
+import { faHome, faHandSparkles, faMusic, faUser, faUserSlash, faBroom } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/client'
 
@@ -8,31 +8,35 @@ const Dock = () => {
     const [session, loading] = useSession()
 
     return (
-        <div className="h-screen-25 grid grid-cols-4 gap-4 bg-black text-white">
+        <div className="h-screen-25 bg-purple-200 grid grid-cols-4 gap-4 text-white">
             <Link href="/">
                 <div className="m-auto">
-                    <FontAwesomeIcon icon={faHome} size="1x" />
+                    <FontAwesomeIcon icon={faHome} size="1x" color="#3C366B" />
                 </div>
             </Link>
             <Link href="/lyrics">
                 <div className="m-auto">
-                    <FontAwesomeIcon icon={faMusic} size="1x" />
+                    <FontAwesomeIcon icon={faMusic} size="1x" color="#3C366B" />
                 </div >
             </Link>
             <Link href="/clean">
                 <div className="m-auto">
-                    <FontAwesomeIcon icon={faHandSparkles} size="1x" />
-                </div>
+                    <FontAwesomeIcon icon={faBroom} size="1x" color="#3C366B" />
+                </div >
             </Link>
             {session &&
-                <div className="m-auto" onClick={() => signOut()}>
-                    <FontAwesomeIcon icon={faUserSlash} size="1x" />
-                </div>
+                <Link href="/account">
+                    <div className="m-auto" >
+                        <img src={session.user.image} className="rounded-full h-7 w-7" />
+                    </div>
+                </Link>
             }
             {!session &&
-                <div className="m-auto" onClick={() => signIn()}>
-                    <FontAwesomeIcon icon={faUser} size="1x" />
-                </div>
+                <Link href="/account">
+                    <div className="m-auto">
+                        <FontAwesomeIcon icon={faUser} size="1x" color="#3C366B" />
+                    </div>
+                </Link>
             }
 
         </div>

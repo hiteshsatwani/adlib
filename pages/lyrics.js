@@ -162,21 +162,21 @@ const LyricsApp = () => {
         }
     } else {
         return (
-            <div>
-                <div className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-500 min-h-75 md:h-screen m-h-auto">
-                    <div className="hidden md:block">
-                        <Navbar />
-                    </div>
+            <>
+                <div className="bg-purple-200 min-h-75 h-auto flex" >
                     <div className="m-auto">
-                        <div className="text-white text-center text-4xl pt-20">
-                            Please Sign In
+                        <div className="w-card h-auto pb-5 bg-purple-300 rounded-lg pl-20 pr-20" onClick={() => signIn("spotify")}>
+                            <div className="text-indigo-900 text-md pt-5 font-m-heavy text-center">
+                                Sign In
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div className="block md:hidden">
                     <Dock />
                 </div>
-            </div>
+            </>
         )
     }
 

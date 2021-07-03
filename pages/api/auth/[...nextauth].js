@@ -75,8 +75,7 @@ export default NextAuth({
       if (account?.accessToken) {
         token.accessToken = account.accessToken
         token.accessTokenExpires = account.expires
-        token.refreshToken = account.refreshToken
-      }
+        token.refreshToken = account.refreshToken      }
 
       // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
