@@ -119,9 +119,9 @@ const LyricsApp = () => {
                             <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
                             <CurrentLine key={forceupdate} lyrics={null} />
                             <div class="block ml-5 mt-2">
-                                <button onClick={() => forceupdatef()} type="button" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Re-Sync</button>
+                                <button onClick={() => forceupdatef()} type="button" class="focus:outline-none text-primary text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Re-Sync</button>
                                 <div class="float-right mr-5">
-                                    <button onClick={() => router.push('/')} type="button" class="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Home</button>
+                                    <button onClick={() => router.push('/')} type="button" class="focus:outline-none text-primary text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Home</button>
                                 </div>
                             </div>
                         </div>
