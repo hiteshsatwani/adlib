@@ -11,7 +11,7 @@ const NavBar = () => {
     return (
         <>
             {/* This example requires Tailwind CSS v2.0+ */}
-            <div className="relative bg-purple-300">
+            <div className="relative bg-secondary">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -27,7 +27,7 @@ const NavBar = () => {
                         <div className="-mr-2 -my-2 md:hidden">
                             <button
                                 type="button"
-                                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-indigo-900 hover:text-indigo-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-primary hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                 onClick={() => setOpen(!open)}
                             >
                                 <span className="sr-only">Open menu</span>
@@ -54,7 +54,7 @@ const NavBar = () => {
                                 href="/"
 
                             >
-                                <span className="text-base font-medium text-indigo-900 hover:text-gray-900">
+                                <span className="text-base font-medium text-primary hover:text-gray-900">
                                     Home
                                 </span>
 
@@ -63,7 +63,7 @@ const NavBar = () => {
                                 href="/lyrics"
 
                             >
-                                <span className="text-base font-medium text-indigo-900 hover:text-gray-900">
+                                <span className="text-base font-medium text-primary hover:text-gray-900">
                                     Lyrics
                                 </span>
 
@@ -72,7 +72,7 @@ const NavBar = () => {
                                 href="/clean"
 
                             >
-                                <span className="text-base font-medium text-indigo-900 hover:text-gray-900">
+                                <span className="text-base font-medium text-primary hover:text-gray-900">
                                     Clean My Playlist
                                 </span>
 
@@ -84,7 +84,7 @@ const NavBar = () => {
 
                                 <a
                                     href="#"
-                                    className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-400 hover:bg-indigo-700"
+                                    className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary"
                                 >
                                     Sign In
                                 </a>
@@ -95,7 +95,7 @@ const NavBar = () => {
 
                                 <a
                                     href="#"
-                                    className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-400 hover:bg-indigo-700"
+                                    className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary"
                                 >
                                     Sign Out
                                 </a>
@@ -135,7 +135,7 @@ const NavBar = () => {
                                 <div className="-mr-2">
                                     <button
                                         type="button"
-                                        className="bg-white rounded-md p-2 inline-flex items-center justify-center text-indigo-900 hover:text-indigo-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                        className="bg-white rounded-md p-2 inline-flex items-center justify-center text-primary hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                         onClick={() => setOpen(!open)}
                                     >
                                         <span className="sr-only">Close menu</span>
@@ -165,7 +165,7 @@ const NavBar = () => {
                                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                     >
 
-                                        <span className="ml-3 text-base font-medium text-indigo-900 pt-5">
+                                        <span className="ml-3 text-base font-medium text-primary pt-5">
                                             <Link href="/">
                                                 Home
                                             </Link>
@@ -176,7 +176,7 @@ const NavBar = () => {
                                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                     >
 
-                                        <span className="ml-3 text-base font-medium text-indigo-900">
+                                        <span className="ml-3 text-base font-medium text-primary">
                                             <Link href="/lyrics">
                                                 Lyrics
                                             </Link>
@@ -186,7 +186,7 @@ const NavBar = () => {
                                         href="#"
                                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                     >
-                                        <span className="ml-3 text-base font-medium text-indigo-900">
+                                        <span className="ml-3 text-base font-medium text-primary">
                                             <Link href="/clean">
 
                                                 Clean My Playlist
@@ -199,7 +199,7 @@ const NavBar = () => {
                                             <a
                                                 href="#"
                                                 onClick={() => signIn("spotify")}
-                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-indigo-900 bg-indigo-600 hover:bg-indigo-700"
+                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-primary bg-indigo-600 hover:bg-indigo-700"
                                             >
                                                 Sign In
                                             </a>
@@ -208,7 +208,7 @@ const NavBar = () => {
                                             <a
                                                 href="#"
                                                 onClick={() => signOut()}
-                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-indigo-900 bg-indigo-600 hover:bg-indigo-700"
+                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-primary bg-indigo-600 hover:bg-indigo-700"
                                             >
                                                 Sign Out
                                             </a>

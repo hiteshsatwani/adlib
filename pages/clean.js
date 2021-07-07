@@ -134,32 +134,32 @@ const Clean = () => {
 
                     <>
                         {spotifyApi.setAccessToken(session.accessToken)}
-                        <div className="bg-purple-200 h-screen-75 md:min-h-screen md:h-auto">
+                        <div className="bg-primary h-screen-75 md:min-h-screen md:h-auto">
                             <motion.div initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ delay: 1.5 }} className="m-auto">
-                                <div className="text-indigo-900 text-3xl font-m-heavy text-center pt-8">
+                                <div className="text-secondary text-3xl font-m-heavy text-center pt-8">
                                     Select A Playlist
                                 </div>
-                                <div className="text-indigo-900 text-center text-xl pt-5">
+                                <div className="text-secondary text-center text-xl pt-5">
                                     Only playlists upto 200 tracks are currently supported!
                                 </div>
                                 <div className="md:p-20 p-5 pt-15 ">
-                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3 md:h-auto overflow-auto">
+                                    <div class="grid md:grid-cols-5 md:gap-10 grid-cols-2 gap-3 h-auto h-screen-35 overflow-auto">
                                         {Object.keys(playlistname).map(key => {
                                             return (
                                                 <div key={playlistname[key]} class="">
 
-                                                    <div className="bg-purple-400 rounded-md">
+                                                    <div className="bg-secondary rounded-md">
                                                         <img src={albumarts[key]} className="m-auto pt-10" width="150px" height="150px">
                                                         </img>
 
-                                                        <div className="text-white text-center text-1xl pt-10 pb-5">
+                                                        <div className="text-primary text-center text-1xl pt-10 pb-5">
                                                             {playlistname[key]}
                                                         </div>
                                                         <div className="flex pb-5">
-                                                            <a href='#' onClick={() => clean(playlistids[key], playlistname[key])} class="bg-purple-600 hover:bg-purple-800 py-2 px-6 rounded-full transition duration-500 text-purple-100 m-auto">Clean</a>
+                                                            <a href='#' onClick={() => clean(playlistids[key], playlistname[key])} class="bg-primary hover:bg-primary py-2 px-6 rounded-full transition duration-500 text-secondary m-auto">Clean</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,11 +168,11 @@ const Clean = () => {
                                     </div>
                                 </div>
                                 {playlistids.length == 0 &&
-                                    <div className="flex pt-10">
+                                    <div className="flex">
                                         <a
                                             onClick={() => getPlaylists()}
                                             href='#'
-                                            className="m-auto whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-indigo-900 bg-purple-300 hover:bg-purple-400"
+                                            className="m-auto whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-primary bg-secondary hover:bg-purple-400"
                                         >
                                             Load Playlists
                                         </a>
@@ -195,11 +195,11 @@ const Clean = () => {
                 <div className="hidden md:block">
                     <Navbar />
                 </div>
-                <div className="bg-purple-200 min-h-75 h-auto flex" >
+                <div className="bg-primary min-h-75 h-auto flex" >
 
                     <div className="m-auto">
-                        <div className="w-card h-auto pb-5 bg-purple-300 rounded-lg pl-20 pr-20" onClick={() => signIn("spotify")}>
-                            <div className="text-indigo-900 text-md pt-5 font-m-heavy text-center">
+                        <div className="w-card h-auto pb-5 bg-secondary rounded-lg pl-20 pr-20" onClick={() => signIn("spotify")}>
+                            <div className="text-primary text-md pt-5 font-m-heavy text-center">
                                 Sign In
                             </div>
                         </div>

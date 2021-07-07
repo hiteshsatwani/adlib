@@ -15,7 +15,11 @@ import * as gtag from '../lib/gtag'
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 
+
 function MyApp({ Component, pageProps }) {
+
+
+
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url) => {

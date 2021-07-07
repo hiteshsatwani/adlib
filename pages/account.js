@@ -8,18 +8,18 @@ const Account = () => {
 
     return (
         <>
-            <div className="bg-purple-200 min-h-75 h-auto flex" >
+            <div className="bg-primary min-h-75 h-auto flex" >
                 <div className="m-auto">
                     {!session &&
-                        <div className="w-card h-auto pb-5 bg-purple-300 rounded-lg pl-20 pr-20" onClick={() => signIn("spotify")}>
-                        <div className="text-indigo-900 text-md pt-5 font-m-heavy text-center">
+                        <div className="w-card h-auto pb-5 bg-secondary rounded-lg pl-20 pr-20" onClick={() => signIn("spotify")}>
+                        <div className="text-primary text-md pt-5 font-m-heavy text-center">
                             Sign In
                         </div>
                     </div>
                     }
                     {session &&
-                        <div className="w-card h-auto pb-5 bg-purple-300 rounded-lg pl-20 pr-20" onClick={() => signOut()}>
-                            <div className="text-indigo-900 text-md pt-5 font-m-heavy text-center">
+                        <div className="w-card h-auto pb-5 bg-secondary rounded-lg pl-20 pr-20" onClick={() => signOut()}>
+                            <div className="text-primary text-md pt-5 font-m-heavy text-center">
                                 Sign Out
                             </div>
                         </div>

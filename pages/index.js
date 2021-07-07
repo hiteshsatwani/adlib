@@ -17,15 +17,15 @@ const Home = () => {
   const card1 = () => {
     return (
       <Link href="/lyrics">
-        <div className="w-card h-auto bg-purple-300 rounded-lg flex pb-10 hover:bg-purple-100">
+        <div className="w-card h-auto bg-secondary rounded-lg flex pb-10 hover:bg-purple-100">
           <div className="pt-10 pl-5">
-            <FontAwesomeIcon icon={faMusic} size="3x" color="#3C366B" />
+            <FontAwesomeIcon icon={faMusic} size="3x" color="#679D5A" />
           </div>
           <div>
-            <div className="text-indigo-900 text-md pt-8 pl-8 font-m-heavy">
+            <div className="text-primary text-md pt-8 pl-8 font-m-heavy">
               Get Lyrics
             </div>
-            <div className="text-indigo-900 text-xs pt-1 pl-8 pr-2">
+            <div className="text-primary text-xs pt-1 pl-8 pr-7">
               Instantly get lyrics for the song your listening to seemlessly
             </div>
           </div>
@@ -38,15 +38,15 @@ const Home = () => {
   const card2 = () => {
     return (
       <Link href="/clean">
-        <div className="w-card h-auto bg-purple-300 rounded-lg flex pb-10 hover:bg-purple-100">
+        <div className="w-card h-auto bg-secondary rounded-lg flex pb-10 hover:bg-purple-100">
           <div className="pt-12 pl-5">
-            <FontAwesomeIcon icon={faBroom} size="3x" color="#3C366B" />
+            <FontAwesomeIcon icon={faBroom} size="3x" color="#679D5A" />
           </div>
           <div>
-            <div className="text-indigo-900 text-md pt-8 pl-5 font-m-heavy">
+            <div className="text-primary text-md pt-8 pl-5 font-m-heavy">
               Clean Playlist
             </div>
-            <div className="text-indigo-900 text-xs pt-1 pl-5 pr-2">
+            <div className="text-primary text-xs pt-1 pl-5 pr-2">
               Create an exact clone of your playlist with all of the explicit content removed
             </div>
           </div>
@@ -70,8 +70,8 @@ const Home = () => {
         <div>
           <img src={pfp} className="rounded-full h-20 w-20" />
         </div>
-        <div className="text-indigo-900 text-2xl pt-5 pl-4 font-m-heavy flex-1">
-          Welcome, {session.user.name}
+        <div className="text-primary text-secondary text-2xl pt-5 pl-4 font-m-heavy flex-1">
+          Welcome, <div className="text-accent">{session.user.name} </div>
         </div>
       </div>
     )
@@ -95,8 +95,8 @@ const Home = () => {
 
 
     return (
-      <div className="w-card h-auto pb-8 bg-purple-300 rounded-lg">
-        <div className="text-indigo-900 text-xl pt-5 pl-2 font-m-heavy text-center">
+      <div className="w-card h-auto pb-8 bg-secondary rounded-lg">
+        <div className="text-primary text-xl pt-5 pl-2 font-m-heavy text-center">
           Your Favourite Track
         </div>
         <div className="flex">
@@ -105,13 +105,13 @@ const Home = () => {
           </div>
 
           <div>
-            <div className="text-indigo-900 text-md pt-8 pl-5 font-m-heavy">
+            <div className="text-primary text-md pt-8 pl-5 font-m-heavy">
               {songName}
             </div>
-            <div className="text-indigo-900 text-xs pt-1 pl-5 pr-2">
+            <div className="text-primary text-xs pt-1 pl-5 pr-2">
               {artistName}
             </div>
-            <div className="text-indigo-900 text-xs pt-1 pl-5 pr-2">
+            <div className="text-primary text-xs pt-1 pl-5 pr-2">
               {albumName}
             </div>
           </div>
@@ -122,8 +122,8 @@ const Home = () => {
 
   const signInCard = () => {
     return (
-      <div className="w-card h-auto pb-5 bg-purple-300 rounded-lg" onClick={() => signIn("spotify")}>
-        <div className="text-indigo-900 text-md pt-5 pl-2 font-m-heavy text-center">
+      <div className="w-card h-auto pb-5 bg-secondary rounded-lg" onClick={() => signIn("spotify")}>
+        <div className="text-primary text-md pt-5 pl-2 font-m-heavy text-center">
           Sign In
         </div>
       </div>
@@ -137,7 +137,7 @@ const Home = () => {
       <div className="hidden md:block">
         <Navbar />
       </div>
-      <div className="bg-purple-200 min-h-75 h-auto flex" >
+      <div className="bg-primary min-h-75 h-auto flex" >
         <div className="pl-6 pr-6 block md:hidden">
           {session &&
             <div className="pt-10">
@@ -164,10 +164,10 @@ const Home = () => {
           }
         </div>
         <div className="md:block hidden m-auto pb-32">
-          <div className="text-indigo-900 text-5xl pt-5 font-m-heavy text-center ">
+          <div className="text-secondary text-5xl pt-5 font-m-heavy text-center ">
             Welcome to AdLib
           </div>
-          <div className="text-indigo-900 text-1xl pt-5 font-m-heavy text-center pb-10">
+          <div className="text-secondary text-1xl pt-5 font-m-heavy text-center pb-10">
             (It is recommended to install the mobile app for the best experience)
           </div>
           <div>
