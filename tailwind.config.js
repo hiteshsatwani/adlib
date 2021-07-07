@@ -13,6 +13,7 @@ module.exports = {
       'primary': '#FFFFFF',
       'secondary': '#000000',
       'accent': '#679D5A',
+      'lyrics': '#ffffff'
     }
   }
 }

@@ -6,7 +6,7 @@ const MusicCard = ({ artist, img, title, albumname }) => {
                 <div>
                     <img src={img} className="h-30 w-30" />
                 </div>
-                <div className="text-white col-span-2 md:pl-5 pr-5 pt-8 md:text-left text-right">
+                <div className="text-lyrics col-span-2 md:pl-5 pr-5 pt-8 md:text-left text-right">
                     <div className="text-base">
                         {title}
                     </div>

@@ -78,13 +78,13 @@ const CurrentLine = ({ lyrics }) => {
 	return (
 		<div className="flex h-3/4">
 			<div className="m-auto pl-5 pr-5 md:pl-0 md:pr-0">
-				<div className="text-white text-center text-4xl text-opacity-25">
+				<div className="text-lyrics text-center text-4xl text-opacity-25">
 					{linebefore}<br /><br /><br />
 				</div>
-				<div className="text-white text-center text-4xl">
+				<div className="text-lyrics text-center text-4xl">
 					{currentLine}<br /><br /><br />
 				</div>
-				<div className="text-white text-center text-4xl text-opacity-25">
+				<div className="text-lyrics text-center text-4xl text-opacity-25">
 					{lineafter}
 				</div>
 				<br />
