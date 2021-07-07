@@ -86,10 +86,10 @@ const Home = () => {
 
     useEffect(() => {
       spotifyApi.getMyTopTracks().then((result) => {
-        setsongName(result.items[0].name)
-        setartistName(result.items[0].artists[0].name)
-        setalbumName(result.items[0].album.name)
-        setalbumart(result.items[0].album.images[0].url)
+        setsongName(result.items[1].name)
+        setartistName(result.items[1].artists[0].name)
+        setalbumName(result.items[1].album.name)
+        setalbumart(result.items[1].album.images[0].url)
       })
     }, []);
 
