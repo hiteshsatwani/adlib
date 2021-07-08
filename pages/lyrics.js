@@ -71,6 +71,7 @@ const LyricsApp = () => {
                             setalbumname(response.item.album.name)
                             clear()
                             getUnsyncedLyrics(response.item.name, response.item.artists[0].name)
+                            currentlyPlaying = response.item.name
                         }
                     }
                 })

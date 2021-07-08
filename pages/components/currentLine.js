@@ -27,13 +27,11 @@ const CurrentLine = ({ lyrics }) => {
 			}
 			if (currentms < state.progress) {
 				currentms = state.progress + 1
-				var newtime = state.progress + 1500
+				var newtime = state.progress + 1200
 				setTimer(Math.round(newtime / 100))
 				time = (Math.round(newtime / 100))
 			}
 		}, 1000);
-
-		console.log("refreshed")
 
 	}, []);
 
