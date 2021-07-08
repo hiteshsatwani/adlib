@@ -6,7 +6,7 @@ import "firebase/firestore";
 export async function checkcache(song, artist) {
 	const db = firebase.firestore()
 
-	song = song.replace(/ *\([^)]*\) */g, ""); 
+	song = song.replace(/ *\([^)]*\) */g, "");
 
 	var docRef = db.collection("CachedLyrics").doc(song + " + " + artist);
 	return docRef.get().then((doc) => {
@@ -19,9 +19,11 @@ export async function checkcache(song, artist) {
 			}).then(function (string) {
 				if (string != "None") {
 					docRef.set({ lyrics: string })
+					var data = string.split('\n')
+					return data
+				} else {
+					return null
 				}
-				var data = string.split('\n')
-				return data
 			})
 			return data
 		}
@@ -30,6 +32,15 @@ export async function checkcache(song, artist) {
 	});
 }
 
+
+export async function getUnSynced(artist, song) {
+	const data = fetch('https://us-central1-lyrics-api-b7dfc.cloudfunctions.net/getLyrics?artist=' + artist + '&song=' + song).then(function (response) {
+		return response.text();
+	}).then(function (string) {
+		return string
+	});
+	return data
+}
 
 export async function getLyricFromSong(artist, song) {
 

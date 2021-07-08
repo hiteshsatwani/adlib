@@ -10,6 +10,9 @@
   .h-screen-35 {
     max-height: 70vh
   }
+  .h-screen-30 {
+    max-height: 60vh
+  }
   .min-h-75 {
     min-height: 93vh
   }

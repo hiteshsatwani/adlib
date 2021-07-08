@@ -1,6 +1,6 @@
 import { timers } from 'jquery';
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import { checkcache, getLRC } from '../functions'
+import { checkcache, getUnSynced } from '../functions'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import SpotifyWebApi from 'spotify-web-api-js';
 import firebase from 'firebase'
@@ -9,6 +9,7 @@ import { Context } from './store';
 import Navbar from './components/Navbar/Navbar'
 import MusicCard from './components/card/musiccard'
 import router, { useRouter } from 'next/router'
+import UnSyncedCard from './components/unsyncedcard';
 import Dock from './components/Navbar/DockBar'
 
 
@@ -27,6 +28,8 @@ const LyricsApp = () => {
     }
 
     const [lrc, setLRC] = useState([])
+
+    const [unsyncedLyrics, setunsyncedLyrics] = useState("")
 
     const [session, loading] = useSession()
 
@@ -57,15 +60,17 @@ const LyricsApp = () => {
                             setartist(response.item.artists[0].name)
                             setalbumart(response.item.album.images[0].url)
                             setalbumname(response.item.album.name)
+                            clear()
                             getLyrics(response.item.name, response.item.artists[0].name)
                             currentlyPlaying = response.item.name
 
                         } catch (err) {
-                            console.log(err)
                             settitle(response.item.name)
                             setartist(response.item.artists[0].name)
                             setalbumart("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/1024px-Solid_black.svg.png")
                             setalbumname(response.item.album.name)
+                            clear()
+                            getUnsyncedLyrics(response.item.name, response.item.artists[0].name)
                         }
                     }
                 })
@@ -73,18 +78,39 @@ const LyricsApp = () => {
         }, 7000);
     }
 
+    const clear = () => {
+        setLRC("")
+        setunsyncedLyrics("")
+    }
+
 
     const getLyrics = (song, artist) => {
-
         // reset()
         // setfunc((func) => func + 1)
-
         checkcache(song, artist).then((result) => {
-            setLRC(result)
-            setforceupdate((forceupdate) => forceupdate + 1)
+            if (result != null) {
+                setLRC(result)
+                setforceupdate((forceupdate) => forceupdate + 1)
+            } else {
+                getUnSynced(artist, song).then((result) => {
+                    console.log(result)
+                    setunsyncedLyrics(result)
+                })
+            }
+
         }
         )
     }
+
+    const getUnsyncedLyrics = (song, artist) => {
+
+        getUnSynced(artist, song).then((result) => {
+            console.log(result)
+            setunsyncedLyrics(result)
+        })
+    }
+
+
 
 
 
@@ -102,12 +128,8 @@ const LyricsApp = () => {
     }
     if (session) {
         if (lrc.length == 0) {
-
-
-
             return (
                 <div>
-
                     <>
                         <div className="bckgrnd min-h-screen" style={{ backgroundImage: "url(" + albumart + ")", }}>
 
@@ -117,7 +139,7 @@ const LyricsApp = () => {
 
                             {spotifyApi.setAccessToken(session.accessToken)}
                             <MusicCard artist={artist} title={title.replace(/ *\([^)]*\) */g, "")} img={albumart} albumname={albumname.replace(/ *\([^)]*\) */g, "")} />
-                            <CurrentLine key={forceupdate} lyrics={null} />
+                            <UnSyncedCard lyrics={unsyncedLyrics} key={unsyncedLyrics} />
                             <div class="block ml-5 mt-2">
                                 <button onClick={() => forceupdatef()} type="button" class="focus:outline-none text-primary text-sm py-2.5 px-5 rounded-md border border-white hover:bg-blue-50">Re-Sync</button>
                                 <div class="float-right mr-5">
