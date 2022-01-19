@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "37621229835",
+    "project_id": "adlib-app-2d2b1",
+    "storage_bucket": "adlib-app-2d2b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37621229835:android:5b073f7066ddb2d0ea9a0e",
+        "android_client_info": {
+          "package_name": "fun.adlib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37621229835-t29knmebosp1j1qtmi1bf381pi1gottf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz54VKIpq2yfACdy9EsaOo-LPHRmYVLQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37621229835-t29knmebosp1j1qtmi1bf381pi1gottf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
